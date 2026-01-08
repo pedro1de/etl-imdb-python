@@ -1,0 +1,26 @@
+# Ambiente virtual
+venv/
+.env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Banco de dados
+*.db
+
+# Dados brutos e tratados
+data/
+*.tsv
+*.gz
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
