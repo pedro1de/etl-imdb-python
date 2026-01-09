@@ -100,6 +100,7 @@ Este repositório contém duas versões do pipeline:
 
 - **Versão completa (`etl_imdb_full.py`)**  
   Preparada para processar o conjunto integral de dados do IMDb, utilizando escrita em disco, processamento em chunks e controle de memória. Indicada para execução em ambientes com maior capacidade computacional.
+  com automação via schedule, projetada para execução em ambientes com maior capacidade computacional. 
 
 Ambas seguem a mesma lógica de negócio e arquitetura de pipeline.
 
