@@ -1,39 +1,60 @@
 # Pipeline ETL – Dados IMDb para Análise de Tendências de Mercado
 
-## Contexto de Negócio
+## Contexto
 
-Este projeto simula um cenário real de uma empresa de mídia que está estruturando um novo squad de produto com foco em campanhas de marketing baseadas em lançamentos de filmes.
+Este projeto simula um cenário real de uma empresa de mídia que necessita estruturar sua base de dados para apoiar decisões estratégicas de marketing e produto, com foco em lançamentos audiovisuais.
 
-Para apoiar decisões estratégicas, surgiu a necessidade de compreender padrões de consumo, aceitação do público e tendências de mercado utilizando dados do IMDb (Internet Movie Database), uma das maiores bases públicas da indústria audiovisual.
+Para isso, utiliza dados públicos do IMDb (Internet Movie Database), uma das maiores bases de dados da indústria audiovisual, exigindo a construção de um pipeline de ETL robusto, reprodutível e escalável antes de qualquer etapa analítica.
 
-Antes de qualquer análise, foi necessário construir um pipeline de ETL capaz de coletar, tratar e organizar esses dados de forma estruturada e confiável.
-
-Este projeto foca exatamente nessa etapa.
+O escopo do projeto está concentrado na engenharia e preparação dos dados, não na análise final.
 
 ---
 
-## Objetivo do Projeto
+## Objetivo
 
-Construir um pipeline de ETL automatizado para:
+Construir um pipeline de ETL em Python capaz de:
 
-- Extrair dados públicos do IMDb
-- Tratar e padronizar dados brutos
-- Armazenar os dados em um banco relacional
-- Criar tabelas analíticas prontas para consumo por times de dados, produto ou marketing
+- Extrair dados públicos do IMDb  
+- Tratar e padronizar dados brutos  
+- Persistir os dados em um banco relacional  
+- Criar tabelas analíticas prontas para consumo por áreas de negócio  
 
-O projeto simula a atuação de um profissional responsável pela preparação da base de dados para análises e tomada de decisão.
+O projeto representa a atuação de um profissional responsável por estruturar a base de dados para análises posteriores.
 
 ---
 
 ## Tecnologias Utilizadas
 
-- Python
-- Pandas
-- SQLite
-- Requests
-- Logging
-- Schedule
-- Git / GitHub
+- Python  
+- Pandas  
+- SQLite  
+- Requests  
+- Logging  
+- Git / GitHub  
+
+---
+
+## Estrutura do Projeto
+
+etl-imdb-python/
+│
+├── src/
+│ ├── extract/
+│ ├── transform/
+│ ├── load/
+│ ├── etl_imdb.py
+│ ├── etl_imdb_full.py
+│
+├── notebooks/
+│
+├── data/
+│
+├── README.md
+└── requirements.txt
+
+
+- `etl_imdb.py`: versão reduzida do pipeline, utilizada para execução local e validação.
+- `etl_imdb_full.py`: versão completa do pipeline, preparada para processar o conjunto integral de dados do IMDb.
 
 ---
 
@@ -41,49 +62,55 @@ O projeto simula a atuação de um profissional responsável pela preparação d
 
 ### Extração
 - Download automatizado dos datasets públicos do IMDb
-- Controle de existência para evitar downloads redundantes
+- Verificação de existência local para evitar downloads redundantes
 
 ### Transformação
-- Leitura de arquivos compactados (.tsv.gz)
+- Leitura de arquivos compactados (`.tsv.gz`)
 - Tratamento de valores nulos
 - Padronização dos dados
-- Geração de arquivos tratados no formato .tsv
+- Geração de arquivos tratados em formato `.tsv`
 
 ### Carga
 - Carga dos dados tratados em banco SQLite
-- Escrita em chunks para lidar com grandes volumes de dados
-- Criação de tabelas analíticas
+- Escrita em chunks para lidar com grandes volumes
+- Criação de tabelas analíticas a partir dos dados normalizados
 
 ---
 
 ## Modelo Analítico
 
-Foram criadas tabelas analíticas contendo informações como:
+O pipeline gera tabelas analíticas contendo informações como:
 
-- Títulos e tipos de produção
-- Avaliações médias e volume de votos
-- Gêneros
-- Ano de lançamento
-- Quantidade de participantes por produção
+- Identificação e tipo de produção  
+- Avaliação média e volume de votos  
+- Gêneros  
+- Ano de lançamento  
+- Quantidade de participantes por título  
 
-Essas tabelas servem como base para análises de tendências e apoio à tomada de decisão em campanhas de marketing.
-
----
-
-## Observação
-
-Devido a limitações momentâneas de hardware, foi utilizada uma versão reduzida do pipeline para testes e validação local.
-
-O código completo do ETL, preparado para lidar com grandes volumes de dados, está disponível neste repositório e segue a mesma lógica de funcionamento.
+Essas tabelas servem como base para análises de tendências e suporte à tomada de decisão em campanhas de marketing e produto.
 
 ---
 
-## Possíveis Desdobramentos
+## Observação sobre Escalabilidade
 
-- Desenvolvimento de dashboards analíticos
-- Análises de tendências por gênero e período
-- Apoio à definição de campanhas baseadas em lançamentos
-- Exploração de padrões de aceitação do público
+Este repositório contém duas versões do pipeline:
+
+- **Versão reduzida (`etl_imdb.py`)**  
+  Utilizada para testes locais e demonstração do funcionamento do ETL, limitando o volume de dados processados para evitar restrições de hardware.
+
+- **Versão completa (`etl_imdb_full.py`)**  
+  Preparada para processar o conjunto integral de dados do IMDb, utilizando escrita em disco, processamento em chunks e controle de memória. Indicada para execução em ambientes com maior capacidade computacional.
+
+Ambas seguem a mesma lógica de negócio e arquitetura de pipeline.
+
+---
+
+## Possíveis Extensões
+
+- Criação de dashboards analíticos  
+- Análises de tendências por gênero, período ou avaliação  
+- Integração com ferramentas de BI  
+- Orquestração do pipeline em ambientes produtivos  
 
 ---
 
